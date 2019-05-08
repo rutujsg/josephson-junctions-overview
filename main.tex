@@ -1,0 +1,205 @@
+%%Document setup
+\documentclass[letterpaper,english,reprint, aps]{revtex4-1}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{babel}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx,epstopdf}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage[unicode=true]
+ {hyperref}
+\usepackage{breakurl}
+
+\makeatletter
+
+\graphicspath{{./}}
+
+%%Begin the document
+\begin{document}
+
+\preprint{APS/123-QED}  %%we're using APS style
+
+%%Set the title
+\title{Superconductivity and Josephson Junctions}
+
+%%Set the authors
+\author{Zachary A. Cochran}
+\email{zcochran@iupui.edu}
+\affiliation{Department of Physics, Indiana University - Purdue University Indianapolis
+(IUPUI), Indianapolis, Indiana 46202 USA}
+
+\author{Rutuj S. Gavankar}  %correct if necessary
+\email{rsgavank@iupui.edu}
+\affiliation{Department of Physics, Indiana University - Purdue University Indianapolis
+(IUPUI), Indianapolis, Indiana 46202 USA}
+
+\date{\today}
+\maketitle
+
+
+
+\section{Introduction: Superconductivity} %%Don't forget your citations and references!
+In 1911, a Dutch physicist, Heike Kamerlingh Onnes, discovered superconductivity when he refrigerated mercury using liquid helium. He noted that the resistivity of mercury at 4.19 \si{\kelvin} suddenly dropped to zero. In 1912, Onnes conducted an experiment by introducing an electric current into a superconducting ring and removing the source. He observed that the current intensity did not diminish with time, concluding that the superconductor had \emph{no} electrical resistance at all. In 1935, Walther Meissner and Robert Ochsenfeld discovered that superconductors expelled all applied magnetic fields, making them a perfect diamagnet. In 1972, physicists John Bardeen, Leon Cooper and John Schrieffer won a shared Nobel Prize in physics for describing the phenomenon of superconductivity with a quantum mechanical description.  
+
+\subsection{Cooper Pairs}
+Metallic conductors have free electrons in the conducting band that are loosely bound to the nucleus. These electrons are free to travel through the metal lattice when a small potential is applied on the conductor. The motion of these free electrons in the conductor is the electric current through that conductor. The free electrons can be modelled as an electron gas. Drude's electron gas model describes \citep{feynman}
+\begin{equation}
+    \label{ohms_law}
+    \mathrm{J} = \sigma \mathrm{E}
+\end{equation}
+\begin{equation}
+    \label{conductivity}
+    \sigma = \frac{ne^2 \tau}{m_e}
+\end{equation}
+where $J$ is the current density and $E$ is the applied electric field $\sigma$ is the conductivity of the material, $n$ is the electron density, and $\tau$ is the collision time of the electrons. The conductivity of the material is dependant on the temperature of the material. As the electrons flow through the conductor, they collide with the lattice structure of the conductor. The tendency of the material to resist the flow of these electrons is called the resistivity of the conductor. Resistivity ($\rho$) and conductivity are inversely related. That is, $\rho = 1/\sigma$. As the temperature of the material decreases, the kinetic energy of electrons colliding with lattice decreases. Resistivity has a temperature dependence of $\rho \propto T^5$ \citep{cooper_pairs, vanduzer}.
+
+The microscopic theory for superconductors developed by Bardeen, Cooper and Schrieffer assumes a completely filled Fermi sea of electrons to which two new electrons are added. The interaction between the electrons can be expressed using the potential $V(\boldsymbol{r_1} - \boldsymbol{r_2})$. If such a potential is attractive, that is, negative, the interaction of these electrons can be described by the wavefunction
+\begin{equation}
+    \mathbf{\Psi} = \sum_{\boldsymbol{k}} a_k e^{i\boldsymbol{k}.(\boldsymbol{r_1} - \boldsymbol{r_2})}
+\end{equation}
+These electron bound pairs are known as Cooper pairs. As long as the energy due to collisions of these Cooper pairs with the lattice of conductor is not enough to break the pairing, the loosely bound Cooper pairs can flow through the conductor without dispassion. The vibrational kinetic energy of a conductor lattice at low temperatures is not enough to break the coupling of Cooper pairs. The minimum temperature for this to occur is the critical temperature $T_C$ of the material. Below the critical temperature, Cooper pairs flow through the conductor without any electrical resistance. This state is called the superconducting state. In the superconducting state, the bound pairs behave as Bosons rather than Fermions, and do not follow the Pauli exclusion principle \citep{vanduzer,fermi_gas,feynman}. The average wavefunction describing these Cooper pairs can be written as 
+\begin{equation}
+    \psi(\boldsymbol{r}) = \sqrt{n_s^*(\boldsymbol{r})}e^{i\theta(\Vec{r})}
+\end{equation}
+where $n_s^*(\boldsymbol{r})$ is the Cooper pair density and $\theta(\boldsymbol{r})$ is a scalar position function. For an electron pair with effective mass $m^*$, effective charge $e^*$ and average velocity $\boldsymbol{v_s}$, the momentum in the presence of a magnetic field is given by
+\begin{equation}
+    \boldsymbol{p} = \hbar \nabla \theta = e^*\Lambda \boldsymbol{J_s} + e^*\boldsymbol{A} 
+\end{equation}
+where $J_s = n_s^* e^* \boldsymbol{v_s}$ is the pair-current density and $\Lambda = m^*/(n_s^* {e^*}^2)$. Taking the curl on both sides gives the relation between current density and magnetic field in a superconductor, also known as "second London equation" \citep{london_paper}
+\begin{equation}
+    \Lambda(\nabla \times \boldsymbol{J_s} ) + \boldsymbol{B} \label{eq:second_london}
+\end{equation}
+where $\Vec{B} = \nabla \times \boldsymbol{A}$ is the induced magnetic field. The first London equation gives the relation between the electric field $\Vec{E}$ and the current density 
+\begin{equation}
+    \Lambda \frac{\partial\boldsymbol{J_s}}{\partial t} = \boldsymbol{E}
+\end{equation}
+The London equations along with Maxwell's equations can be used to describe all the properties of a superconductor. 
+
+
+\subsection{The Meissner Effect}
+If a sufficiently small external changing magnetic field is applied across a superconducting material, circulating eddy currents will be induced inside the material. Since there is no current dissipation due to zero electrical resistance, the eddy currents produce opposing magnetic fields of the same magnitude. As a result, the superconductor repels and incident magnetic fields, and is a perfect diamagnet. This phenomenon is called the Meissner effect \citep{feynman}. The Meissner experiment also proved that while a superconductor has zero resistance, it does not have infinite conductance. That is, a superconductor is not a perfect conductor, since a perfect conductor would trap all the flux, whereas, a superconductor expels all of it. 
+
+Since in a superconductor there are no displacement currents and the currents present in the superconductor are purely due to the Cooper pairs,
+\begin{equation}
+    \nabla \cross \boldsymbol{H} = \boldsymbol{J_s}
+\end{equation}
+where $\Vec{H}$ is the magnetic field strength due to the Cooper pair current density $\Vec{J_s}$ and from eq. \ref{eq:second_london},
+\begin{equation}
+    \Lambda \nabla \cross \nabla \cross \boldsymbol{H} = - \boldsymbol{B} \label{eq:h_b}
+\end{equation}
+where $\boldsymbol{B} = \mu_0 \boldsymbol{H}$ is the magnetic field. Since $\nabla \cdot \boldsymbol{B} = 0$ using vector identity,  eq. \ref{eq:h_b} becomes
+\begin{equation}
+    \nabla^2 \boldsymbol{B} = \frac{1}{\lambda_L^2} \boldsymbol{B} 
+\end{equation}
+where $\lambda^2 = \Lambda/\mu_0 = m^*/(\mu_0n_s^* e^{*2})$ is called the London penetration depth. This penetration depth is temperature dependant and has a minimum value below the critical value $T_c$ \citep{feynman,vanduzer}. 
+
+Having zero electrical resistance and being a perfect diamagnet are two of the most important characteristics of a superconductor, but superconductivity has a lot more associated phenomena and potential applications. One such phenomenon is called the Josephson Effect 
+
+
+\section{The Josephson Effect}
+The Josephson Effect, as discovered by B. D. Josephson in 1962 \citep{josephson, josephson_ieee}, was originally considered to be a "fluke" of experimentation: in small ($\sim$ 1 nm), parallel-plate superconducting junctions current could, on occasion, flow without a voltage drop. Initially thought to be bridges in the dielectric separating the superconducting plates, but Josephson suspected another reason: Cooper pairs tunneling between the plates. The probability of this happening, however, was thought to be too small, so the effect was generally ignored. Due to this, Josephson's paper was the subject of intense debate and, in some cases, complete dismissal.
+
+However, a year after publishing his paper, Josephson was vindicated with the base discovery of his effect, and then later another side-effect of his theory in materials including superfluid helium \citep{josephson_ieee, probable_jj, AC_He_jj, AC_detect}.
+
+There are several main effects seen in the Josephson Junction: the ability for electrons to tunnel across a barrier; the existence of a critical current that, for currents below it, no voltage drop exists across the junction; a dependence of the critical current on magnetic field; and AC/DC effects within the junction.
+
+\subsection{Tunneling and the DC Effect}
+There is the capability of quasiparticles to tunnel between two superconductors, but there is also the ability for Cooper pairs to also tunnel between two junctions \citep{josephson, vanduzer}. The difference between quasiparticle and Cooper-pair tunneling is that Cooper-pair tunneling does not require excitations in the lattices or with any form of bias; they occur spontaneously.
+
+For large separations in superconductors, there is a form of a "macroscopic wave function" that describes the tunneling behavior of Cooper pairs. Their phase difference, as can be seen by eq. \ref{macroscopic} \citep{vanduzer}:
+\begin{equation}
+    \label{macroscopic}
+    \psi = |\psi (\boldsymbol{r})|\exp\left[i\left(\theta(\boldsymbol{r}) - \frac{2E_F}{\hbar}t\right)\right]
+\end{equation}
+
+However, if the distance between the separations decreases, then the wavefunctions allow coupling to occur between the two sides. If the wavefunctions of two coupled electrons are $\psi_{1,2}$, then Josephson found that, for a potential energies $U_{1,2}$ and coupling $K$,
+\begin{equation}
+    i\hbar \frac{\partial \psi_j}{\partial t} = U_j\psi_j + K\psi_{2-j}
+\end{equation}
+
+If a voltage source $V$ is applied across the junction, then the potential energies will be:
+\begin{equation}
+    U_j = (-1)^{2-j}eV
+\end{equation}
+
+Letting the wave function be represented in terms of pair density, we have $\psi_j = (n_{sj}^*)^{1/2}e^{i\theta_j}$, where $n_{sj}^*$ is the Cooper pair density and $\theta_j$ is a function of position. If phase difference is $\psi = \theta_2 - \theta_1$, then,
+\begin{equation}
+    \label{jj_teqs}
+    \frac{\partial n_{sj}^*}{\partial t} = (-1)^{2-j}\frac{2}{\hbar}K(n_{s1}^*n_{s2}^*)^{1/2}\sin\phi
+\end{equation}
+\begin{equation}
+    \frac{\partial \theta_j}{\partial t} = -\frac{K}{\hbar}\left(\frac{n_{s(2-j)}^*}{n_{sj}^*}\right)^{1/2}\cos\phi + (-1)^{2-j}\frac{e^*V}{2\hbar}
+\end{equation}
+
+where we've used $e^* = -2e$. Looking carefully we see that $\partial n_{sj}/\partial t$ is the definition of current density, so eq. \ref{jj_teqs} can be rewritten as:
+\begin{equation}
+    J = J_c\sin\phi
+\end{equation}
+
+Here, $J_c$ is the critical current density, which cannot be evaluated by an analysis of the above equations as coupling is still unknown.
+
+By subtracting $\partial(\phi_2-\phi_1)/\partial t$ we can actually determine the phase difference as a function of time across the junction:
+\begin{equation}
+    \frac{\partial\phi}{\partial t} = \frac{2e}{\hbar}V
+\end{equation}
+
+A drop in energy relative to the uncoupled system can be observed, based on the previous equations. This energy drop is proportional to critical current and the cosine of the phase difference \citep{josephson,josephson_ieee,vanduzer}.
+
+This phenomenon of spontaneous tunneling creating currents (referred to as "supercurrents") is typically reffered to as the "DC Effect," as a small, DC signal is generated through the barrier \citep{josephson,josephson_ieee,AC_detect,ac_dc_jj}.
+
+\subsection{The AC Effect}
+If a DC voltage is applied to the junction, then it is a simple task to determine current flow through the junction \citep{vanduzer}. Integrating for the phase difference results in:
+\begin{equation}
+    \phi = \phi_0 + \frac{2e}{\hbar}Vt
+\end{equation}
+
+and substituting this into the current-density equation yields
+\begin{equation}
+    I = I_c\sin(\omega_Jt+\phi_0)
+\end{equation}
+
+where $\omega_J \equiv \frac{2e}{\hbar}V$. What this indicates is that there is an alternating current present through the junction for a DC voltage applied, where the frequency is dependent solely on the voltage applied. Numerically, this gives a frequency of:
+\begin{equation}
+    f_J = \frac{\omega_J}{2\pi} = \frac{e}{\pi\hbar}V \approx 483.6\times10^{12}V
+\end{equation}
+
+This effect is what is reffered to as the "AC Effect" \citep{josephson, AC_He_jj, AC_detect, vanduzer, ac_dc_jj}. 
+\section{Applications of Josephson Junctions}
+There are several applications for Josephson Junctions. Considered by some to be a "universal sensor," \citep{josephson_ieee}, it can be used for many different measurement purposes, such as spin detection, magnetic field measurement, strain measurement, and current/voltage detection. The NIST standard for ten volts is defined by approximatley 300,000 josephson junctions \citep{nist,large_jj}.
+
+In regards to their magnetic sensor capabilities, particular interest has been placed in Josephson Junctions for use in superconducting quantum interference devices (SQUIDs) for the purpose of "extremely sensitive magnetic [sensing]" \citep{jj_squid}. These devices can be used for both measurement/detection purposes, as well as for spin traps for specific particles, especially useful in quantum computing.
+
+Finally, one of the oldest applications considered is for microwave, near-infrared, to visible-spectrum electromagnetic wave generation, due to the ability to generate massive frequencies with very little voltage \citep{jj_wave}. This kind of system could allow for easier methods for generating these kinds of waves without extensive setups or use of blackbody radiation or emission spectra. The electrical signals themselves could be used, too, particularly in computational purposes to provide ultra-high-speed clock generators. However, at the moment, the technology to accomplish this kind of task does not yet exist, as amplifiers do not have amplification ranges that reach into the hundreds of gigahertz to terahertz regions.
+
+\section{Conclusion}
+Superconductivity is an unusual phenomenon with many potential applications. While room-temperature superconductors do not yet exist, the temperature ranges have been steadily creeping up over the past century, and advances in superconducting research and technologies may one day yield a breakthrough.
+
+Within the superconductive devices themselves, there is not any device so well-known or popular as perhaps the Josephson Junction, which was almost an "accidental" discovery, like superconductivity itself. These devices have simple voltage-to-frequency conversion capabilities and have been shown to exhibit many useful properties that cause them to act nearly as universal sensors. Where developments with these devices may go is yet a mystery, but results and current research are promising, indicating that soon, these devices may be useful for such applications as even high-speed computing.
+
+\begin{thebibliography}{}
+%put your sources before mine - they should go in the order of appearance in the paper
+\bibitem{cooper_pairs} L. N. Cooper, "Bound Electron Pairs in a Degenerate Fermi Gas," Phys. Rev. $\boldsymbol{4}$, 104 (1956).
+\bibitem{feynman} R. P. Feynman, R. Leighton, M. Sands, "Lectures on Physics, Vol. 3," Addison-Wesley, (1965). 
+\bibitem{fermi_gas} J. Bardeen, L. N. Cooper, and J. R. Schrieffer, "Microscopic theory of superconductivity," Phys. Rev. $\boldsymbol{104}$, pp. 1189-1190 (1956). 
+\bibitem{london_paper} F. London and  H. London, "The Electromagnetic Equations of the Supraconductor" Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences, $\boldsymbol{149}$, 866, pp. 71-88 (1935). 
+\bibitem{josephson} B. D. Josephson, "Possible New Effects in Superconductive Tunneling," Phys. Lett. $\boldsymbol{1}$, 7 (1962).
+\bibitem{josephson_ieee} R. A. Kamper, "The Josephson Effect," IEEE Trans. On Electron Devices $\boldsymbol{16}$, 10 (1969).
+\bibitem{probable_jj} P. W. Anderson and J. M. Rowell, "Probable Observation of the Josephson Superconducting Tunneling Effect," Phys. Rev. Lett. $\boldsymbol{10}$, 6 (1963).
+\bibitem{AC_He_jj} B. M. Khorana, "AC Josephson Effect in Superfluid Helium," Phys. Rev. $\boldsymbol{1}$, 185 (1969).
+\bibitem{AC_detect} I. Glaever, "Detection of the AC Josephson Effect," Phys. Rev. Lett. $\boldsymbol{14}$, 22 (1965).
+\bibitem{vanduzer} T. van Duzer and C. W. Turner, "Superconducting Devices and Circuits, Second Edition," Prentice Hall, Inc, Upper Saddle River, NJ, 1999, pp. 41-59, 158-217. 
+\bibitem{ac_dc_jj}	S. Levy, E. Lahoud, L. Shamroni, and J. Steinhauer, "The a.c. and d.c. Josephson effects in a Bose-Einstein condensate," Nature $\boldsymbol{449}$, pp. 579-583 (2007).
+\bibitem{nist} NIST. A Primary Voltage Standard for the Whole World [Online]. 2013. \href{https://www.nist.gov/news-events/news/2013/04/primary-voltage-standard-whole-world}{https://www.nist.gov/news-events/news/2013/04/primary-voltage-standard-whole-world} [April 2019].
+\bibitem{jj_squid}	N. Terauchi, S. Noguchi, and H. Igarashi, "Numerical Simulation of DC SQUID Taking Into Account Quantum Characteristic of Josephson Junction," IEEE Trans. On Magnetics $\boldsymbol{51}$, 3 (2015).
+\bibitem{large_jj}	L. Wang, J. Li, Y. Zhong, X. Wang, and Q. Zhong, "Fabrication and Characterization of Physically-linked Large-scale Josephson Junction Test Arrays," 2018 Conference on Precision Electromagnetic Measurements (CPEM 2018), Paris, 2018, pp. 1-2.
+\bibitem{jj_wave}	D. N. Langenberg, D. J. Scalapino, and B. N. Taylor, "Josephson-Type Superconducting Tunnel Junctions as Generators of Microwave and Submillimeter Wave Radiation," IEEE Proc. $\boldsymbol{4}$, 54 (1966).
+%\bibitem{}	A. H. Silver, "D-7 - Superconducting Quantum Electronics," IEEE Journal of Quant. Elect. $\boldsymbol{4}$, 11 (1968).
+
+\end{thebibliography}
+
+\end{document}
